@@ -13,20 +13,28 @@ function BinaryTree() {
 }
 
 // _inOrderTraverseNode(): 재귀로 트리를 순회하며 중위 순회 (내부 사용)
-BinaryTree.prototype._insertNode = function (node, value) {
-  if (node === null) {
-    node = new Node(value);
-  } else if (value < node.value) {
-    node.left = this._insertNode(node.left, value);
-  } else if (value >= node.value) {
-    node.right = this._insertNode(node.right, value);
-  }
-  return node;
-};
 
 // inOrderTraverse(): 중위 순회하며 노드 출력
 
 // _insertNode(): 재귀로 트리를 순회하며 노드 추가 (내부 사용)
+BinaryTree.prototype._insertNode = function (node, value) {
+  // 현재값과 비교
+  // 작으면 왼쪽, 크면 오른쪽
+  // 왼쪽, 오른쪽에 left, right pointer 비어있다면 추가할 노드를 연결
+  // 비어 있지 않다면 하위노드에서 다시 비교하도록 넘겨준다.
+
+  if (node === null) {
+    // 왼쪽, 오른쪽에 left, right pointer 비어있다면 추가할 노드를 연결
+    node = new Node(value); // 현재값과 비교
+  } else if (value < node.value) {
+    // 작으면 왼쪽
+    node.left = this._insertNode(node.left, value);
+  } else if (value >= node.value) {
+    // 크면 오른쪽
+    node.right = this._insertNode(node.right, value);
+  }
+  return node; // 비어 있지 않다면 하위노드에서 다시 비교하도록 넘겨준다.
+};
 
 // insert(): 노드 추가
 BinaryTree.prototype.insert = function (value) {
@@ -56,9 +64,31 @@ BinaryTree.prototype.insert = function (value) {
 let tree = new BinaryTree();
 
 tree.insert("F");
+/* 
+this.root = null -> F 
+*/
+
 tree.insert("B");
+/* 
+this.root = F 노드가 null아닌 F로 F와 insert'B'를 비교 후 왼쪽으로 감 -> 
+F.left = B
+*/
+
 tree.insert("A");
+/* 
+this.root = F  
+F.left = B
+B.left = A
+*/
+
 tree.insert("D");
+/* 
+this.root = F  
+F.left = B
+B.left = A
+B.right = D
+*/
+
 tree.insert("C");
 tree.insert("E");
 tree.insert("G");

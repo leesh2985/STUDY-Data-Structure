@@ -52,6 +52,8 @@ Graph.prototype._dfsRecursiveVisit = function (vertex) {
   }
 };
 
+// 1. 재귀호출방법
+
 let graph = new Graph();
 let vertices = ["A", "B", "C", "D", "E", "F", "G", "H", "I"];
 

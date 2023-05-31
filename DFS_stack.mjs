@@ -81,4 +81,4 @@ console.log(stack.indexOf(1, 2));
 console.log(stack.includes(1));
 console.log(stack.includes(5));
 
-export { DFS_stack };
+export { Stack };

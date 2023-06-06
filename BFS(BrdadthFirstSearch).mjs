@@ -36,7 +36,7 @@ Graph.prototype.bfs = function (startVertex) {
 
 // _bfsLoopVisit(): 큐를 이용한 BFS탐색
 Graph.prototype._bfsLoopVisit = function (vertex) {
-  let queue = new Queue();
+  let queue = new Queue(); // stack()쓰면 DFS
   queue.enqueue(vertex);
 
   while (!queue.isEmpty()) {
